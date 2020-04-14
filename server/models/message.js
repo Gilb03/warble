@@ -21,14 +21,14 @@ messageSchema.pre("save", async function(next){
      //find user 
      let user = await User.findById(this.user);
     //remove id of message from msg list 
-    usermessage.remove(this._id);
+    user.message.remove(this._id);
    //save user 
    await user.save();
     //return next
     return next();
-    } catch (e){
-        return next(err);
-    } 
+    } catch (error){
+        return next(error);
+    }
 });
 
 const Message = mongoose.model('Message', messageSchema);
